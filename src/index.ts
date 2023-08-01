@@ -6,7 +6,7 @@ import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
 // import { InitAppRoutes } from './initAppRoutes';
-import { initDB } from './initDB';
+import { initDB } from './db';
 
 export const Server = () => {
   const app = express();
