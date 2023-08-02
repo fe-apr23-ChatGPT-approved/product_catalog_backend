@@ -1,24 +1,24 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { initDB } from './initDB';
+import { initDB } from './db';
 
 //its for test i will remove it later
 const phones = [
-  {id: 1, name: 'iphone 11'},
-  {id: 2, name: 'iphone 12'},
+  { id: 1, name: 'iphone 11' },
+  { id: 2, name: 'iphone 12' },
 ];
 
 export const Server = async () => {
-  
   const app = express();
   dotenv.config();
-  
+
   const PORT = process.env.PORT || 5000;
+  // eslint-disable-next-line prefer-destructuring
   const CLIENT_URL = process.env.CLIENT_URL;
   const API_URL = `${process.env.API_URL}:${PORT}`;
-  
-  app.use(cors({origin: CLIENT_URL}));
+
+  app.use(cors({ origin: CLIENT_URL }));
 
   const sequelize = initDB();
 

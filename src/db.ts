@@ -6,15 +6,10 @@ dotenv.config();
 
 const DB_URI = process.env.DB_URI || '';
 
-export const initDB = () => (
-
-  new Sequelize(
-    DB_URI,
-    {
-      models,
-      dialectOptions: {
-        ssl: true,
-      }
-    }
-  )
-);
+export const initDB = () =>
+  new Sequelize(DB_URI, {
+    models,
+    dialectOptions: {
+      ssl: true,
+    },
+  });
