@@ -4,38 +4,35 @@ import {
   DataType,
   Model,
   Table,
-  Unique,
 } from 'sequelize-typescript';
 
 @Table({
-  tableName: 'products'
+  tableName: 'products',
 })
-
 export class Product extends Model {
   @AllowNull(false)
   @Column({
     type: DataType.STRING,
   })
     category: string;
-    
-  @Unique
+
   @AllowNull(false)
   @Column({
-    type: DataType.INTEGER,
+    type: DataType.STRING,
     field: 'item_id',
   })
-    itemId: number;
+    itemId: string;
 
   @AllowNull(false)
   @Column({
     type: DataType.STRING,
   })
     name: string;
-  
+
   @AllowNull(false)
   @Column({
     type: DataType.INTEGER,
-    field: 'full_price,'
+    field: 'full_price,',
   })
     fullPrice: number;
 

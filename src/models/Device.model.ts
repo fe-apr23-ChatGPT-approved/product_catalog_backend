@@ -3,15 +3,18 @@ import {
   DataType,
   Column,
   AllowNull,
-  Table,
+  PrimaryKey,
 } from 'sequelize-typescript';
+import { Description } from '../types/Description';
 
-@Table({
-  tableName: 'Device',
-  createdAt: false,
-  updatedAt: false,
-})
 export class Device extends Model {
+  @PrimaryKey
+  @AllowNull(false)
+  @Column({
+    type: DataType.STRING,
+  })
+    id: string;
+
   @AllowNull(false)
   @Column({
     type: DataType.STRING,
@@ -41,14 +44,14 @@ export class Device extends Model {
   @AllowNull(false)
   @Column({
     type: DataType.INTEGER,
-    field: 'price_regular,',
+    field: 'price_regular',
   })
     priceRegular: number;
 
   @AllowNull(false)
   @Column({
     type: DataType.INTEGER,
-    field: 'price_discount',
+    field: 'priceDiscount',
   })
     priceDiscount: number;
 
@@ -72,12 +75,9 @@ export class Device extends Model {
 
   @AllowNull(false)
   @Column({
-    type: DataType.JSON,
+    type: DataType.JSONB,
   })
-    description: {
-    title: string;
-    text: string[];
-  }[];
+    description!: Description[];
 
   @AllowNull(false)
   @Column({
