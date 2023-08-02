@@ -8,14 +8,14 @@ module.exports = {
   async up(queryInterface) {
     await queryInterface.bulkInsert(
       'tablets',
-      tablets.map(tablet => (
-        {...tablet, description: JSON.stringify(tablet.description)})));
+      tablets.map((tablet) => ({
+        ...tablet,
+        description: JSON.stringify(tablet.description),
+      })),
+    );
   },
 
   async down(queryInterface) {
-    await queryInterface.bulkDelete(
-      'tablets',
-      null,
-      {});
+    await queryInterface.bulkDelete('tablets', null, {});
   },
 };

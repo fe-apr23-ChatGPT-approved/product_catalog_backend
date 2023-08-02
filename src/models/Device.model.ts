@@ -1,14 +1,19 @@
-import { Model, DataType, Column, AllowNull, PrimaryKey } from 'sequelize-typescript';
+import {
+  Model,
+  DataType,
+  Column,
+  AllowNull,
+  PrimaryKey,
+} from 'sequelize-typescript';
 import { Description } from '../types/Description';
 
 export class Device extends Model {
-
   @PrimaryKey
   @AllowNull(false)
   @Column({
-    type: DataType.STRING
+    type: DataType.STRING,
   })
-    id:string;
+    id: string;
 
   @AllowNull(false)
   @Column({
@@ -39,7 +44,7 @@ export class Device extends Model {
   @AllowNull(false)
   @Column({
     type: DataType.INTEGER,
-    field: 'price_regular'
+    field: 'price_regular',
   })
     priceRegular: number;
 
@@ -70,7 +75,7 @@ export class Device extends Model {
 
   @AllowNull(false)
   @Column({
-    type: DataType.JSONB
+    type: DataType.JSONB,
   })
     description!: Description[];
 
