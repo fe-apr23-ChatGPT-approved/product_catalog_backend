@@ -6,6 +6,14 @@ import {
 } from 'sequelize-typescript';
 
 export class Device extends Model {
+
+  @AllowNull(false)
+  @Column({
+    type: DataType.STRING,
+
+  })
+    id: string;
+
   @AllowNull(false)
   @Column({
     type: DataType.STRING,
@@ -51,7 +59,7 @@ export class Device extends Model {
     type: DataType.ARRAY(DataType.STRING),
     field: 'colors_available',
   })
-    colorsAvailable: string;
+    colorsAvailable: string[];
 
   @AllowNull(false)
   @Column({
