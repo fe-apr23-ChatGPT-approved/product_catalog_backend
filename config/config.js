@@ -1,5 +1,6 @@
-/* eslint-disable prefer-destructuring */
-/* eslint-disable @typescript-eslint/no-var-requires */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+// const fs = require('fs');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -7,14 +8,14 @@ dotenv.config();
 const DB_USERNAME = process.env.DB_USERNAME;
 const DB_PASSWORD = process.env.DB_PASSWORD;
 const DB_NAME = process.env.DB_NAME;
-const DB_HOSTNAME = process.env.DB_HOSTNAME;
+const DB_HOST = process.env.DB_HOST;
 const DB_PORT = process.env.DB_PORT;
 
-const dbCredantials = {
+const dbCredentials = {
   username: DB_USERNAME,
   password: DB_PASSWORD,
   database: DB_NAME,
-  host: DB_HOSTNAME,
+  host: DB_HOST,
   port: DB_PORT
 };
 
@@ -27,15 +28,15 @@ const dialectConfig = {
 
 module.exports = {
   development: {
-    ...dbCredantials,
+    ...dbCredentials,
     ...dialectConfig,
   },
   test: {
-    ...dbCredantials,
+    ...dbCredentials,
     ...dialectConfig,
   },
   production: {
-    ...dbCredantials,
+    ...dbCredentials,
     ...dialectConfig,
   }
 };

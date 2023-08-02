@@ -1,13 +1,20 @@
-/* eslint-disable max-len */
 import { Sequelize } from 'sequelize-typescript';
-import 'dotenv/config';
+import { models } from './models';
+import dotenv from 'dotenv';
 
-const URI = process.env.DB_URI || '';
+dotenv.config();
+
+const DB_URI = process.env.DB_URI || '';
 
 export const initDB = () => (
-  new Sequelize( URI, {
-    dialectOptions: {
-      ssl: true
+
+  new Sequelize(
+    DB_URI,
+    {
+      models,
+      dialectOptions: {
+        ssl: true,
+      }
     }
-  } )
+  )
 );
