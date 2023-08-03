@@ -9,6 +9,8 @@ import {
 
 @Table({
   tableName: 'accessories',
+  createdAt: false,
+  updatedAt: false,
 })
 export class Accessory extends Device {
   @AllowNull(false)

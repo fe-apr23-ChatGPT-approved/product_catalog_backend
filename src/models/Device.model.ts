@@ -18,7 +18,7 @@ export class Device extends Model {
   @AllowNull(false)
   @Column({
     type: DataType.STRING,
-    field: 'namespace_id',
+    // field: 'namespace_id',
   })
     namespaceId: string;
 
@@ -31,7 +31,7 @@ export class Device extends Model {
   @AllowNull(false)
   @Column({
     type: DataType.ARRAY(DataType.STRING),
-    field: 'capacity_available',
+    // field: 'capacity_available',
   })
     capacityAvailable: string[];
 
@@ -44,7 +44,7 @@ export class Device extends Model {
   @AllowNull(false)
   @Column({
     type: DataType.INTEGER,
-    field: 'price_regular',
+    // field: 'price_regular',
   })
     priceRegular: number;
 
@@ -58,7 +58,7 @@ export class Device extends Model {
   @AllowNull(false)
   @Column({
     type: DataType.ARRAY(DataType.STRING),
-    field: 'colors_available',
+    // field: 'colors_available',
   })
     colorsAvailable: string[];
 

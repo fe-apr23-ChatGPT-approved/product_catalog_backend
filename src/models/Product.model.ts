@@ -8,8 +8,17 @@ import {
 
 @Table({
   tableName: 'products',
+  createdAt: false,
+  updatedAt: false,
 })
 export class Product extends Model {
+  @AllowNull(false)
+  @Column({
+    type: DataType.INTEGER,
+    primaryKey: true,
+  })
+    id: number;
+
   @AllowNull(false)
   @Column({
     type: DataType.STRING,
@@ -19,7 +28,7 @@ export class Product extends Model {
   @AllowNull(false)
   @Column({
     type: DataType.STRING,
-    field: 'item_id',
+    // field: 'item_id',
   })
     itemId: string;
 
@@ -32,7 +41,7 @@ export class Product extends Model {
   @AllowNull(false)
   @Column({
     type: DataType.INTEGER,
-    field: 'full_price,',
+    // field: 'full_price,',
   })
     fullPrice: number;
 
