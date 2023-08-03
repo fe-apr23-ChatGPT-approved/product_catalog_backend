@@ -7,7 +7,7 @@
     "format": "prettier --write . --ignore-path .gitignore",
     "fix-style": "npm run format",
     "prepare": "husky install",
-    "build": "npx swc ./src -d build --config-file .swcrc",
+    "build": "tsc",
     "pre-build": "npm install && npm run build",
     "start": "node build/index.js",
     "dev": "nodemon -r @swc-node/register ./src/index.ts"

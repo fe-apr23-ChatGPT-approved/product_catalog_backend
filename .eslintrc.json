@@ -75,7 +75,6 @@
     ],
     "init-declarations": ["warn", "always"],
     "no-return-assign": "error",
-    "prefer-destructuring": "warn",
     "arrow-body-style": ["error", "as-needed"],
     "space-infix-ops": "error"
   }
