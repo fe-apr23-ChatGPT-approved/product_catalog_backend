@@ -1,32 +1,23 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { initDB } from './db';
 import { Product } from './models/Product.model';
 import { Tablet } from './models/Tablet.model';
 import { Phone } from './models/Phone.model';
 import { Accessory } from './models/Accessory.modes';
+import { initDB } from './db';
 
 dotenv.config();
 
-export const Server = async () => {
+export const Server = () => {
   const app = express();
 
-  const PORT = process.env.PORT || 5000;
-  // eslint-disable-next-line prefer-destructuring
-  const CLIENT_URL = process.env.CLIENT_URL;
-  const API_URL = `${process.env.API_URL}:${PORT}`;
-
-  app.use(cors({ origin: CLIENT_URL }));
+  app.use(cors());
 
   const sequelize = initDB();
-
-  const res = await sequelize.authenticate();
-
-  console.log(res);
-
   sequelize.addModels([Product]);
 
+  app.use(express.static('public'));
   app.get('/products', async(req, res) => {
     
     try {
@@ -149,8 +140,5 @@ export const Server = async () => {
 
   });
 
-  app.listen(PORT, () => {
-    // eslint-disable-next-line no-console
-    console.log(`🚀Server is running on ${API_URL} 🚀🚀🚀`);
-  });
+  return app;
 };
