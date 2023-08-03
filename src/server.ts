@@ -5,18 +5,20 @@ import { Product } from './models/Product.model';
 import { Tablet } from './models/Tablet.model';
 import { Phone } from './models/Phone.model';
 import { Accessory } from './models/Accessory.modes';
+import { initDB } from './db';
 
 dotenv.config();
 
 export const Server = () => {
   const app = express();
-  
-  const CLIENT_URL = process.env.CLIENT_URL;
 
-  app.use(cors({ origin: CLIENT_URL }));
+  app.use(cors());
+
+  const sequelize = initDB();
+  sequelize.addModels([Product]);
 
   app.use(express.static('public'));
-
+  
   app.get('/products', async(req, res) => {
     
     try {
