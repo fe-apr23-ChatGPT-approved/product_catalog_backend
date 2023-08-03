@@ -1,3 +1,5 @@
+'use strict';
+
 import { Sequelize } from 'sequelize-typescript';
 import { models } from './models';
 import dotenv from 'dotenv';
@@ -6,7 +8,7 @@ dotenv.config();
 
 const DB_URI = process.env.DB_URI || '';
 
-export const initDB = () =>
+export const sequelize = () =>
   new Sequelize(DB_URI, {
     models,
     dialectOptions: {
