@@ -1,8 +1,10 @@
 import {
   AllowNull,
+  AutoIncrement,
   Column,
   DataType,
   Model,
+  PrimaryKey,
   Table,
 } from 'sequelize-typescript';
 
@@ -12,6 +14,15 @@ import {
   updatedAt: false,
 })
 export class Product extends Model {
+
+  @PrimaryKey
+  @AllowNull(false)
+  @AutoIncrement
+  @Column({
+    type: DataType.INTEGER,
+  })
+    id: number;
+
   @AllowNull(false)
   @Column({
     type: DataType.INTEGER,
