@@ -5,6 +5,12 @@ const TABLE_NAME = 'products';
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(TABLE_NAME, {
+      id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+      },
       category: {
         type: Sequelize.STRING,
         allowNull: false,
