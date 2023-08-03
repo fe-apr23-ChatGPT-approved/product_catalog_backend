@@ -15,15 +15,17 @@ import {
 })
 export class Product extends Model {
 
+  // @PrimaryKey
+  // @AllowNull(false)
+  // @AutoIncrement
+  // @Column({
+  //   type: DataType.INTEGER,
+  // })
+  //   id: number;
+
   @PrimaryKey
   @AllowNull(false)
   @AutoIncrement
-  @Column({
-    type: DataType.INTEGER,
-  })
-    id: number;
-
-  @AllowNull(false)
   @Column({
     type: DataType.INTEGER,
     primaryKey: true,
