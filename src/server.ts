@@ -3,9 +3,14 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { initDB } from './db';
 import { Product } from './models/Product.model';
-import { Tablet } from './models/Tablet.model';
-import { Phone } from './models/Phone.model';
-import { Accessory } from './models/Accessory.modes';
+// eslint-disable-next-line max-len
+import { getAllPhonesFromProductsController, getPhoneByIdController } from './controlers/phones.contorllers';
+// eslint-disable-next-line max-len
+import { getAllTabletsFromProductsController, getTabletByIdController } from './controlers/tablets.controllers';
+// eslint-disable-next-line max-len
+import { getAllAccessoriesFromProductsController, getAccessoryByIdController } from './controlers/accessories.controllers';
+// eslint-disable-next-line max-len
+import { getAndCountAllProductsController, getProducttByIdController } from './controlers/products.controllers';
 
 dotenv.config();
 
@@ -27,127 +32,21 @@ export const Server = async () => {
 
   sequelize.addModels([Product]);
 
-  app.get('/products', async(req, res) => {
-    
-    try {
-      const products = await Product.findAll();
-      res.send(products);
+  app.get('/products', getAndCountAllProductsController);
+
+  app.get('/products/:id', getProducttByIdController);
+
+  app.get('/phones', getAllPhonesFromProductsController);
+
+  app.get('/phones/:id', getPhoneByIdController);
+
+  app.get('/tablets', getAllTabletsFromProductsController);
+
+  app.get('/tablets/:id', getTabletByIdController);
   
-    } catch (error) {
-      res.sendStatus(500);
-    }
-  });
+  app.get('/accessories', getAllAccessoriesFromProductsController);
 
-  app.get('/products/:id', async(req, res) => {
-    const { id } = req.params;
-
-    try {
-      const phones = await Product.findByPk(id);
-
-      if (!phones) {
-        res.status(404).send({ message: 'No found product with this id' });
-
-        return;
-      }
-
-      res.send(phones);
-    } catch (error) {
-      console.error('Error:', error);
-      res.status(500).send('Internal Server Error');
-    }
-
-  });
-
-  app.get('/phones', async(req, res) => {
-    
-    try {
-      const phones = await Phone.findAll();
-      res.send(phones);
-  
-    } catch (error) {
-      res.sendStatus(500);
-    }
-  });
-
-  app.get('/phones/:id', async(req, res) => {
-    const { id } = req.params;
-
-    try {
-      const phones = await Phone.findByPk(id);
-
-      if (!phones) {
-        res.status(404).send({ message: 'No found phone with this id' });
-
-        return;
-      }
-
-      res.send(phones);
-    } catch (error) {
-      console.error('Error:', error);
-      res.status(500).send('Internal Server Error');
-    }
-
-  });
-
-  app.get('/tablets', async (req, res) => {
-    try {
-      const tablets = await Tablet.findAll();
-      res.send(tablets);
-  
-    } catch (error) {
-      res.sendStatus(500);
-    }
-  });
-
-  app.get('/tablets/:id', async(req, res) => {
-    const { id } = req.params;
-
-    try {
-      const tablets = await Tablet.findByPk(id);
-
-      if (!tablets) {
-        res.status(404).send({ message: 'No found tablet with this id' });
-
-        return;
-      }
-
-      res.send(tablets);
-    } catch (error) {
-      console.error('Error:', error);
-      res.status(500).send('Internal Server Error');
-    }
-
-  });
-  
-  app.get('/accessories', async (req, res) => {
-    try {
-      const accessories = await Accessory.findAll();
-      res.send(accessories);
-  
-    } catch (error) {
-      res.sendStatus(500);
-    }
-  });
-
-  app.get('/accessories/:id', async(req, res) => {
-    const { id } = req.params;
-
-    try {
-      const accessories = await Accessory.findByPk(id);
-
-      if (!accessories) {
-        res.status(404).send({ message: 'No found accesory with this id' });
-
-        return;
-      }
-
-      res.send(accessories);
-    } catch (error) {
-      console.error('Error:', error);
-      res.status(500).send('Internal Server Error');
-    }
-
-  });
+  app.get('/accessories/:id', getAccessoryByIdController);
 
   app.listen(PORT, () => {
     // eslint-disable-next-line no-console
