@@ -33,6 +33,7 @@ export const getAndCountAllPhonesController: Controller = async (req, res) => {
     res.send(phones);
 
   } catch (error) {
+    console.error('Error: ', error);
     res.sendStatus(500);
   }
 };
@@ -66,7 +67,7 @@ export const getAllPhonesFromProductsController:Controller = async (req, res) =>
 
     res.send(phones);
   } catch (error) {
-    console.error('Error fetching products:', error);
+    console.error('Error: ', error);
     res.status(500).send('Internal Server Error');
   }
 };
@@ -75,17 +76,16 @@ export const getPhoneByIdController: Controller = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const accessories = await Phone.findByPk(id);
+    const phones = await Phone.findByPk(id);
 
-    if (!accessories) {
-      res.status(404).send({ message: 'No found accesory with this id' });
+    if (!phones) {
+      res.status(404).send({ message: 'No found phone with this id' });
 
       return;
     }
 
-    res.send(accessories);
+    res.send(phones);
   } catch (error) {
-    console.error('Error:', error);
     res.status(500).send('Internal Server Error');
   }
 

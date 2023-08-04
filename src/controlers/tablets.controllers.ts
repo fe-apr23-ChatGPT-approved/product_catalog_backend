@@ -31,6 +31,7 @@ export const getAndCountAllTabletsController: Controller = async (req, res) => {
     res.send(tablets);
 
   } catch (error) {
+    console.error('Error: ', error);
     res.sendStatus(500);
   }
 };
@@ -64,7 +65,7 @@ export const getAllTabletsFromProductsController:Controller = async (req, res) =
 
     res.send(phones);
   } catch (error) {
-    console.error('Error fetching products:', error);
+    console.error('Error: ', error);
     res.status(500).send('Internal Server Error');
   }
 };
@@ -73,15 +74,15 @@ export const getTabletByIdController: Controller = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const accessories = await Tablet.findByPk(id);
+    const tablets = await Tablet.findByPk(id);
 
-    if (!accessories) {
-      res.status(404).send({ message: 'No found accesory with this id' });
+    if (!tablets) {
+      res.status(404).send({ message: 'No found tablet with this id' });
 
       return;
     }
 
-    res.send(accessories);
+    res.send(tablets);
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');
