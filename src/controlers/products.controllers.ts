@@ -32,23 +32,24 @@ export const getAndCountAllProductsController: Controller = async (req, res) => 
     res.send(products);
 
   } catch (error) {
+    console.error('Error: ', error);
     res.sendStatus(500);
   }
 };
 
-export const getProducttByIdController: Controller = async (req, res) => {
+export const getProductByIdController: Controller = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const accessories = await Product.findByPk(id);
+    const products = await Product.findByPk(id);
 
-    if (!accessories) {
-      res.status(404).send({ message: 'No found accesory with this id' });
+    if (!products) {
+      res.status(404).send({ message: 'No found prdoduct with this id' });
 
       return;
     }
 
-    res.send(accessories);
+    res.send(products);
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');

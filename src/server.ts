@@ -10,7 +10,7 @@ import { getAllTabletsFromProductsController, getTabletByIdController } from './
 // eslint-disable-next-line max-len
 import { getAllAccessoriesFromProductsController, getAccessoryByIdController } from './controlers/accessories.controllers';
 // eslint-disable-next-line max-len
-import { getAndCountAllProductsController, getProducttByIdController } from './controlers/products.controllers';
+import { getAndCountAllProductsController, getProductByIdController } from './controlers/products.controllers';
 
 dotenv.config();
 
@@ -34,7 +34,7 @@ export const Server = async () => {
 
   app.get('/products', getAndCountAllProductsController);
 
-  app.get('/products/:id', getProducttByIdController);
+  app.get('/products/:id', getProductByIdController);
 
   app.get('/phones', getAllPhonesFromProductsController);
 
