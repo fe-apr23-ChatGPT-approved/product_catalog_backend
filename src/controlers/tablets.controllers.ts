@@ -2,7 +2,7 @@ import { Controller } from '../types/Controller';
 import { TabletsServices } from '../services/tablets.services';
 import { Tablet } from '../models/Tablet.model';
 
-export const getAndCountAllTabletsController: Controller = async (req, res) => {
+const getAndCountAllTabletsController: Controller = async (req, res) => {
   const avaliableSortBy = ['id', 'priceRegular', 'name'];
   const tabletsServices = new TabletsServices();
 
@@ -36,9 +36,8 @@ export const getAndCountAllTabletsController: Controller = async (req, res) => {
   }
 };
 
-export const getAllTabletsFromProductsController:Controller = async (req, res) => {
+const getAllTabletsFromProductsController:Controller = async (req, res) => {
   const avaliableSortBy = ['id', 'fullPrice', 'name', 'year'];
-  // const productServices = new ProductsServices();
   const tabletsServices = new TabletsServices();
 
   const {
@@ -70,7 +69,7 @@ export const getAllTabletsFromProductsController:Controller = async (req, res) =
   }
 };
 
-export const getTabletByIdController: Controller = async (req, res) => {
+const getTabletByIdController: Controller = async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -88,4 +87,10 @@ export const getTabletByIdController: Controller = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 
+};
+
+export const tabletControllers = {
+  getAndCountAllTabletsController,
+  getAllTabletsFromProductsController,
+  getTabletByIdController,
 };

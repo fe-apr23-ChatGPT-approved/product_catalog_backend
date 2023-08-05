@@ -4,7 +4,7 @@ import { PhonesServices } from '../services/phones.services';
 import { Phone } from '../models/Phone.model';
 // import { ProductsServices } from '../services/products.services';
 
-export const getAndCountAllPhonesController: Controller = async (req, res) => {
+const getAndCountAllPhonesController: Controller = async (req, res) => {
   const phonesServices = new PhonesServices();
   const avaliableSortBy = ['id', 'priceRegular', 'name'];
 
@@ -38,8 +38,7 @@ export const getAndCountAllPhonesController: Controller = async (req, res) => {
   }
 };
 
-export const getAllPhonesFromProductsController:Controller = async (req, res) => {
-  // const productServices = new ProductsServices();
+const getAllPhonesFromProductsController:Controller = async (req, res) => {
   const avaliableSortBy = ['id', 'fullPrice', 'name', 'year'];
   const phonesServices = new PhonesServices();
 
@@ -72,7 +71,7 @@ export const getAllPhonesFromProductsController:Controller = async (req, res) =>
   }
 };
 
-export const getPhoneByIdController: Controller = async (req, res) => {
+const getPhoneByIdController: Controller = async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -89,4 +88,10 @@ export const getPhoneByIdController: Controller = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 
+};
+
+export const phoneControllers = {
+  getAndCountAllPhonesController,
+  getAllPhonesFromProductsController,
+  getPhoneByIdController,
 };
