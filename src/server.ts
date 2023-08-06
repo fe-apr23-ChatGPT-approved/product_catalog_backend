@@ -3,14 +3,10 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { Product } from './models/Product.model';
 import { initDB } from './db';
-// eslint-disable-next-line max-len
-import { getAllPhonesFromProductsController, getPhoneByIdController } from './controlers/phones.contorllers';
-// eslint-disable-next-line max-len
-import { getAllTabletsFromProductsController, getTabletByIdController } from './controlers/tablets.controllers';
-// eslint-disable-next-line max-len
-import { getAllAccessoriesFromProductsController, getAccessoryByIdController } from './controlers/accessories.controllers';
-// eslint-disable-next-line max-len
-import { getAndCountAllProductsController, getProductByIdController } from './controlers/products.controllers';
+import { phoneControllers } from './controlers/phones.contorllers';
+import { tabletControllers } from './controlers/tablets.controllers';
+import { accessoryControllers } from './controlers/accessories.controllers';
+import { productControllers} from './controlers/products.controllers';
 
 dotenv.config();
 
@@ -24,21 +20,27 @@ export const Server = () => {
 
   app.use(express.static('public'));
   
-  app.get('/products', getAndCountAllProductsController);
-
-  app.get('/products/:id', getProductByIdController);
-
-  app.get('/phones', getAllPhonesFromProductsController);
-
-  app.get('/phones/:id', getPhoneByIdController);
-
-  app.get('/tablets', getAllTabletsFromProductsController);
-
-  app.get('/tablets/:id', getTabletByIdController);
+  app.get('/products', productControllers.getAndCountAllProductsController);
   
-  app.get('/accessories', getAllAccessoriesFromProductsController);
+  app.get('/products/new', productControllers.getNewPhonesFromProductsController);
 
-  app.get('/accessories/:id', getAccessoryByIdController);
+  app.get('/products/discount', productControllers.getDiscountPhonesFromProductsController);
+
+  app.get('/products/:id', productControllers.getProductByIdController);
+
+  app.get('/products/:id/recomended', productControllers.getRecomendedProductsController);
+
+  app.get('/phones', phoneControllers.getAllPhonesFromProductsController);
+
+  app.get('/phones/:id', phoneControllers.getPhoneByIdController);
+
+  app.get('/tablets', tabletControllers.getAllTabletsFromProductsController);
+
+  app.get('/tablets/:id', tabletControllers.getTabletByIdController);
+  
+  app.get('/accessories', accessoryControllers.getAllAccessoriesFromProductsController);
+
+  app.get('/accessories/:id', accessoryControllers.getAccessoryByIdController);
 
   return app;
 };

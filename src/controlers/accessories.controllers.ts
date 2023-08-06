@@ -2,7 +2,7 @@ import { Controller } from '../types/Controller';
 import { AccessoriesServices } from '../services/accessories.services';
 import { Accessory } from '../models/Accessory.modes';
 
-export const getAndCountAllAccessoriesController: Controller = async (req, res) => {
+const getAndCountAllAccessoriesController: Controller = async (req, res) => {
   const avaliableSortBy = ['id', 'priceRegular', 'name'];
   const accessoriesServices = new AccessoriesServices();
 
@@ -35,9 +35,8 @@ export const getAndCountAllAccessoriesController: Controller = async (req, res) 
   }
 };
 
-export const getAllAccessoriesFromProductsController:Controller = async (req, res) => {
+const getAllAccessoriesFromProductsController:Controller = async (req, res) => {
   const avaliableSortBy = ['id', 'fullPrice', 'name', 'year'];
-  // const productServices = new ProductsServices();
   const accessoriesServices = new AccessoriesServices();
 
   const {
@@ -69,7 +68,7 @@ export const getAllAccessoriesFromProductsController:Controller = async (req, re
   }
 };
 
-export const getAccessoryByIdController: Controller = async (req, res) => {
+const getAccessoryByIdController: Controller = async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -87,4 +86,10 @@ export const getAccessoryByIdController: Controller = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 
+};
+
+export const accessoryControllers = {
+  getAccessoryByIdController,
+  getAllAccessoriesFromProductsController,
+  getAndCountAllAccessoriesController,
 };
