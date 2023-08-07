@@ -14,14 +14,16 @@ export class ProductsServices {
     const {
       limit = 1000,
       offset = 0,
-      sortBy = 'id',
+      sortBy = 'year',
       productType,
     } = options;
+
+    const orderBy = sortBy === 'year' ? 'DESC' : 'ASC';
 
     return Product.findAndCountAll({
       limit,
       offset,
-      order: [[sortBy, 'ASC']],
+      order: [[sortBy, orderBy]],
       where: {
         category: { [Op.in]: productType },
       }
