@@ -27,8 +27,9 @@ export const Server = () => {
   app.get('/products/discount', productControllers.getDiscountPhonesFromProductsController);
 
   app.get('/products/:id', productControllers.getProductByIdController);
-
-  app.get('/products/:id/recomended', productControllers.getRecomendedProductsController);
+  
+  // eslint-disable-next-line max-len
+  app.get('/products/:productCategory/recomended', productControllers.getRecomendedProductsController);
 
   app.get('/phones', phoneControllers.getAllPhonesFromProductsController);
 

@@ -43,7 +43,7 @@ export class ProductsServices {
     return Product.findAll({
       limit: 10,
       where: { category, },
-      order: [['year', 'ASC']]
+      order: [['year', 'DESC']]
     });
   }
 }

@@ -72,24 +72,21 @@ const getProductByIdController: Controller = async (req, res) => {
 
 const getRecomendedProductsController: Controller = async (req, res) => {
   const productsServices = new ProductsServices();
-  const { id } = req.params;
+  const { productCategory } = req.params;
 
-  console.log(id);
+  console.log(productCategory);
 
   try {
-    const products = await Product.findByPk(id);
-
-    if (!products) {
-      res.status(404).send({ message: 'No found prdoduct with this id' });
+    const product = await Product.findOne({ where: { category: productCategory} });
+    if (!product) {
+      res.status(404).send({ message: 'No found prdoduct with this category' });
 
       return;
     }
 
-    const { category } = products;
+    console.log(productCategory);
 
-    console.log(category);
-
-    const recomendedProducts = await productsServices.findRecomended(category);
+    const recomendedProducts = await productsServices.findRecomended(productCategory);
 
     res.send(recomendedProducts);
   } catch (error) {
