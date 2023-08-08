@@ -45,7 +45,7 @@ const getAllPhonesFromProductsController:Controller = async (req, res) => {
   const {
     limit = 1000,
     offset = 0,
-    sortBy = 'id',
+    sortBy = 'year',
   } = req.query;
 
   const isSortByValid = typeof sortBy === 'string' && avaliableSortBy.includes(sortBy);

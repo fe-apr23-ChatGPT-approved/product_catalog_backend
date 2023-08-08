@@ -2,7 +2,7 @@ import { Controller } from '../types/Controller';
 import { ProductsServices } from '../services/products.services';
 import { Product } from '../models/Product.model';
 
-const avaliableSortBy = ['id', 'fullPrice', 'name'];
+const avaliableSortBy = ['id', 'fullPrice', 'name', 'year'];
 const avaliableProductType = ['phones', 'accessories', 'tablets'];
 
 const getAndCountAllProductsController: Controller = async (req, res) => {
@@ -11,7 +11,7 @@ const getAndCountAllProductsController: Controller = async (req, res) => {
   const {
     limit = 1000,
     offset = 0,
-    sortBy = 'id',
+    sortBy = 'year',
     productType,
   } = req.query;
 

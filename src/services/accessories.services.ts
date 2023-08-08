@@ -13,7 +13,7 @@ export class AccessoriesServices {
     const {
       limit = 1000,
       offset = 0,
-      sortBy = 'id',
+      sortBy = 'year',
     } = options;
 
     return Accessory.findAndCountAll({
@@ -27,13 +27,15 @@ export class AccessoriesServices {
     const {
       limit = 1000,
       offset = 0,
-      sortBy = 'id',
+      sortBy = 'year',
     } = options;
+
+    const orderBy = sortBy === 'year' ? 'DESC' : 'ASC';
 
     return Product.findAndCountAll({
       limit,
       offset,
-      order: [[sortBy, 'ASC']],
+      order: [[sortBy, orderBy]],
       where: {
         category: 'accessories',
       },
