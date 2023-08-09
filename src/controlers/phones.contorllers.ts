@@ -2,7 +2,6 @@
 import { Controller } from '../types/Controller';
 import { PhonesServices } from '../services/phones.services';
 import { Phone } from '../models/Phone.model';
-// import { ProductsServices } from '../services/products.services';
 
 const getAndCountAllPhonesController: Controller = async (req, res) => {
   const phonesServices = new PhonesServices();

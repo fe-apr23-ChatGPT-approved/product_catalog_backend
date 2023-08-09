@@ -46,4 +46,11 @@ export class ProductsServices {
       order: [['year', 'ASC']]
     });
   }
+
+  findOne(itemId : string) {
+
+    return Product.findOne({
+      where: { itemId, },
+    });
+  }
 }
