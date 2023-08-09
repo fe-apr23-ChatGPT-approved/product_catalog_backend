@@ -46,11 +46,4 @@ export class ProductsServices {
       order: [['year', 'DESC']]
     });
   }
-
-  findOne(itemId : string) {
-
-    return Product.findOne({
-      where: { itemId, },
-    });
-  }
 }

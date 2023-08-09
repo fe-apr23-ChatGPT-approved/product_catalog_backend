@@ -5,8 +5,8 @@ import { Product } from '../models/Product.model';
 const avaliableSortBy = ['id', 'fullPrice', 'name', 'year'];
 const avaliableProductType = ['phones', 'accessories', 'tablets'];
 
-const productsServices = new ProductsServices();
 const getAndCountAllProductsController: Controller = async (req, res) => {
+  const productsServices = new ProductsServices();
 
   const {
     limit = 1000,
@@ -54,7 +54,7 @@ const getProductByIdController: Controller = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const products = await productsServices.findOne(id);
+    const products = await Product.findByPk(id);
 
     if (!products) {
       res.status(404).send({ message: 'No found prdoduct with this id' });
