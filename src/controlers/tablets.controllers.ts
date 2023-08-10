@@ -44,6 +44,7 @@ const getAllTabletsFromProductsController:Controller = async (req, res) => {
     limit = 1000,
     offset = 0,
     sortBy = 'year',
+    query,
   } = req.query;
 
   const isSortByValid = typeof sortBy === 'string' && avaliableSortBy.includes(sortBy);
@@ -60,6 +61,7 @@ const getAllTabletsFromProductsController:Controller = async (req, res) => {
       limit: Number(limit),
       offset: Number(offset),
       sortBy: sortBy as string,
+      query: query as string,
     });
 
     res.send(phones);
