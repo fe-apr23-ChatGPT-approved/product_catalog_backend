@@ -6,6 +6,7 @@ interface Options {
   offset?: number,
   sortBy?: string,
   productType?: string[],
+  query?: string,
 }
 
 export class ProductsServices {
@@ -16,9 +17,26 @@ export class ProductsServices {
       offset = 0,
       sortBy = 'year',
       productType,
+      query,
     } = options;
 
     const orderBy = sortBy === 'year' ? 'DESC' : 'ASC';
+
+    if (query) {
+      const preparedSearch = query.split('-').map(word => (
+        { itemId: {[Op.like]: `%${word}%`} }
+      ));
+
+      return Product.findAndCountAll({
+        limit,
+        offset,
+        order: [[sortBy, orderBy]],
+        where: {
+          category: { [Op.in]: productType },
+          [Op.and]: preparedSearch
+        }
+      });
+    }
 
     return Product.findAndCountAll({
       limit,

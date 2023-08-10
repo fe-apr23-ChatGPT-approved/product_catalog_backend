@@ -13,6 +13,7 @@ const getAndCountAllProductsController: Controller = async (req, res) => {
     offset = 0,
     sortBy = 'year',
     productType,
+    query,
   } = req.query;
 
   // eslint-disable-next-line max-len
@@ -41,6 +42,7 @@ const getAndCountAllProductsController: Controller = async (req, res) => {
       offset: Number(offset),
       sortBy: sortBy as string,
       productType: normalizeProductType as [string],
+      query: query as string,
     });
     res.send(products);
 
